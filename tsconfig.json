@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": [
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client",
+      "@intlify/vite-plugin-vue-i18n/client",
+      "vitest",
+      "vitest/global"
+    ],
+    "paths": {
+      "@/*": ["./src/*"],
+      "tslib": ["./node_modules/tslib/tslib.d.ts"]
+    }
+  },
+  "include": [
+    "vite.config.*",
+    "env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "cypress/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "auto-imports.d.ts",
+    "components.d.ts",
+    "./**/*.ts",
+    "./**/*.vue"
+  ],
+  "exclude": ["dist", "node_modules", "cypress"]
+}
