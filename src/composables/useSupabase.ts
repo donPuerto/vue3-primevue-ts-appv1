@@ -1,30 +1,36 @@
-import { createClient, Provider, AuthApiError } from "@supabase/supabase-js";
+import { createClient, AuthApiError } from "@supabase/supabase-js";
 // Router
 import { useRouter } from "vue-router";
-
-// Inialization
-const router = useRouter();
+// Vue
+import { onMounted } from "vue";
 
 // Supabase keys
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
 // Supabase Clients
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export default {
+  setup() {
+    // Inialization
+    const router = useRouter();
 
-// Add an event listener for the onAuthStateChange event
-supabase.auth.onAuthStateChange((event, session) => {
-  // event can be one of: 'SIGNED_IN', 'SIGNED_OUT', 'USER_UPDATED', 'PASSWORD_RECOVERY'
-  // session is the user's session object
-  console.log("Event", event);
-  console.log("session", session);
+    onMounted(() => {
+      supabase.auth.onAuthStateChange((event, session) => {
+        console.log("Event", event);
+        console.log("session", session);
 
-  if (event === "SIGNED_IN") {
-    // User signed in
-    router.replace("http://localhost:5173/dashboard/personal");
-  } else if (event === "SIGNED_OUT") {
-    // User signed out
-    console.log("User signed out");
-  }
-});
+        if (event === "SIGNED_IN") {
+          router.push("/dashboard/personal");
+        } else if (event === "SIGNED_OUT") {
+          console.log("User signed out");
+        }
+      });
+    });
 
+    return {
+      AuthApiError,
+    };
+  },
+};
 export { supabase };

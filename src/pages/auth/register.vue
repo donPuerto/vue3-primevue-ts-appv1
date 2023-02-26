@@ -199,12 +199,9 @@ import logo from "@/assets/images/dplogov3.jpg";
 import { Register, Redirect, ErrorResponse } from "@/globalvar";
 import { Provider } from "@supabase/supabase-js";
 
-// Vue Toast
-import { toast } from "vue3-toastify";
-import "vue3-toastify/dist/index.css";
-
 // Import Composables
 import useAuthUser from "@/composables/useAuthUser";
+import useToast from "@/composables/useToast";
 
 // Router
 import { useRouter } from "vue-router";
@@ -230,7 +227,9 @@ const rules = {
 
 const v$ = useVuelidate(rules, state);
 
+// Use composable
 const { register, signInWithOAuth } = useAuthUser();
+const { handleErrorToast } = useToast();
 
 // Functions
 const handleRegister = async (isFormValid: boolean) => {
@@ -251,7 +250,7 @@ const handleRegister = async (isFormValid: boolean) => {
         : toggleDialog();
     });
   } catch (error) {
-    alert(error);
+    handleErrorToast(error, 3000, "TOP_CENTER");
   }
 };
 
@@ -284,15 +283,12 @@ const signInWithOAuthHandler = async (provider: Provider) => {
       if (res.length === 0) throw new Error(String(res));
     });
   } catch (error) {
-    alert(error);
+    handleErrorToast(error, 3000, "TOP_CENTER");
   }
 };
 
 onMounted(() => {
-  toast("Wow so easy !", {
-    autoClose: 3000,
-    position: toast.POSITION.TOP_RIGHT,
-  }); // ToastOptions
+  // handleToast("Hello World");
 });
 </script>
 
