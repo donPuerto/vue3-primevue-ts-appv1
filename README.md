@@ -1,10 +1,10 @@
-# Vue 3 + TypeScript + Vite Project
+# Vue 3 + TypeScript + Vite Project + Supabase Startup Project
 
 ## Roadmap/Plans/Experimentation
 
 - Planning to hook up with supabase
-- Familiarize with the standard pattern in installing Primevue and other utilities
-- Familiarization on Primevie component and its best practices
+- Familiarizion using the standard pattern in installing Primevue and other utilities
+- Familiarization on Primevue component and its best practices
 - Future plans looking forward to create my own little CRM
 
 ## Plugins Installed

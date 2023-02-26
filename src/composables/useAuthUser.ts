@@ -8,7 +8,6 @@ import { Login, Register, Redirect, ErrorResponse } from "@/globalvar";
 // so that it will act as global state and always refer to a single user
 const user = ref(null);
 const { createErrorResponse, handleRedirect } = useUtils();
-type OAuthResponseType = Redirect | ErrorResponse;
 
 export default function useAuthUser(): {
   error: Ref<string | null>;
