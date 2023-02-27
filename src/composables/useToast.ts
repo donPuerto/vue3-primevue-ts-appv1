@@ -33,6 +33,17 @@ export default function useToast() {
     }
   }
 
+  function handleInfoToast(
+    message: string,
+    autoClose: number,
+    position: Position
+  ) {
+    toast.info(message, {
+      autoClose: autoClose,
+      position: toast.POSITION[`${position}`],
+    });
+  }
+
   function handleSuccessToast(
     message: string,
     autoClose: number,
@@ -44,8 +55,22 @@ export default function useToast() {
     });
   }
 
+  function handleToast(
+    type: "info",
+    message: string,
+    autoClose: number,
+    position: Position
+  ) {
+    toast[`${type}`](message, {
+      autoClose: autoClose,
+      position: toast.POSITION[`${position}`],
+    });
+  }
+
   return {
     handleErrorToast,
     handleSuccessToast,
+    handleInfoToast,
+    handleToast,
   };
 }

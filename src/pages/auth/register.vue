@@ -229,14 +229,18 @@ const v$ = useVuelidate(rules, state);
 
 // Use composable
 const { register, signInWithOAuth } = useAuthUser();
-const { handleErrorToast } = useToast();
+const { handleErrorToast, handleInfoToast, handleToast } = useToast();
 
 // Functions
 const handleRegister = async (isFormValid: boolean) => {
   submitted.value = true;
   // If form is invalid do not proceed
   if (!isFormValid) {
-    alert("Submission of form in invalid. Please check");
+    handleInfoToast(
+      "Submission of form in invalid. Please check",
+      3000,
+      "TOP_RIGHT"
+    );
     return;
   }
 
@@ -250,7 +254,7 @@ const handleRegister = async (isFormValid: boolean) => {
         : toggleDialog();
     });
   } catch (error) {
-    handleErrorToast(error, 3000, "TOP_CENTER");
+    handleErrorToast(error, 3000, "TOP_RIGHT");
   }
 };
 
@@ -283,12 +287,12 @@ const signInWithOAuthHandler = async (provider: Provider) => {
       if (res.length === 0) throw new Error(String(res));
     });
   } catch (error) {
-    handleErrorToast(error, 3000, "TOP_CENTER");
+    handleErrorToast(error, 3000, "TOP_RIGHT");
   }
 };
 
 onMounted(() => {
-  // handleToast("Hello World");
+  handleToast("info", "Hello World \n This is my message", 3000, "TOP_RIGHT");
 });
 </script>
 
